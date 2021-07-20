@@ -1,5 +1,5 @@
 from modeltranslation.translator import TranslationOptions, register
-from blog.models import PostPage
+from garpix_blog.models import PostPage
 
 
 @register(PostPage)

@@ -1,8 +1,12 @@
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.conf import settings
 from django.db import models
-from garpix_page.models import BasePage
-from blog.utils import get_file_path
-from blog.models import BlogPage
+from django.utils.module_loading import import_string
+
+from garpix_blog.models import BlogPage
+from garpix_blog.utils import get_file_path
+
+PostMixin = import_string(settings.GARPIX_BLOG_POST_MIXIN)
 
 
 def get_display(key, _list):
@@ -12,7 +16,7 @@ def get_display(key, _list):
     return None
 
 
-class PostPage(BasePage):
+class PostPage(PostMixin):
     class TYPE:
         NEW = 1
         PROMOTION = 2

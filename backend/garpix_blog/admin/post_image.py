@@ -1,15 +1,15 @@
 from django.contrib import admin
-from blog.models import PostVideos
+from garpix_blog.models import PostImages
 
 
-@admin.register(PostVideos)
-class PostVideosAdmin(admin.ModelAdmin):
+@admin.register(PostImages)
+class PostImagesAdmin(admin.ModelAdmin):
     list_display = ('title', 'post')
     fieldsets = [
         [
             None, {
                 'fields': (
-                    'title', 'video', 'created_at', 'updated_at', 'post'
+                    'title', 'image', 'created_at', 'updated_at', 'post'
                 )
             }
         ],
@@ -19,9 +19,10 @@ class PostVideosAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at',)
 
 
-class PostVideosItemInline(admin.TabularInline):
-    model = PostVideos
+class PostImagesItemInline(admin.TabularInline):
+    model = PostImages
+    fk_name = 'post'
     extra = 1
     show_change_link = True
-    fields = ('title', 'video', 'created_at', 'updated_at', 'post')
+    fields = ('title', 'image', 'created_at', 'updated_at', 'post')
     readonly_fields = ('created_at', 'updated_at',)

@@ -1,14 +1,15 @@
+from django.conf import settings
 from django.db import models
+from django.utils.module_loading import import_string
 
-from blog.models import PostPage
-from blog.utils import get_file_path
+from garpix_blog.models import PostPage
+from garpix_blog.utils import get_file_path
+
+PostImagesMixin = import_string(settings.GARPIX_BLOG_POST_IMAGE_MIXIN)
 
 
-class PostImages(models.Model):
-    title = models.CharField(max_length=250, verbose_name='Название')
+class PostImages(PostImagesMixin, models.Model):
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to=get_file_path)
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
     post = models.ForeignKey(PostPage, on_delete=models.SET_NULL, related_name='images', blank=True, null=True)
 
     def __str__(self):

@@ -3,8 +3,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.viewsets import ModelViewSet
-from blog.models import PostPage
-from blog.serializers import PostPageSerializer, PostPageListSerializer
+from garpix_blog.models import PostPage
+from garpix_blog.serializers import PostPageSerializer, PostPageListSerializer
 from rest_framework.permissions import BasePermission
 
 

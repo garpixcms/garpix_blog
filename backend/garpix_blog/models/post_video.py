@@ -1,7 +1,11 @@
+from django.conf import settings
 from django.db import models
+from django.utils.module_loading import import_string
 
-from blog.models import PostPage
-from blog.utils import get_file_path
+from garpix_blog.models import PostPage
+from garpix_blog.utils import get_file_path
+
+PostVideosMixin = import_string(settings.GARPIX_BLOG_POST_VIDEO_MIXIN)
 
 
 class PostVideos(models.Model):

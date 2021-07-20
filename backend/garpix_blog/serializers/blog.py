@@ -1,4 +1,4 @@
-from blog.models import BlogPage
+from garpix_blog.models import BlogPage
 from rest_framework import serializers
 from .post import PostPageSerializer
 

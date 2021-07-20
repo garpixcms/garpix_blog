@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from blog.models import PostPage, PostCategory, PostVideos, PostImages
+from garpix_blog.models import PostPage, PostCategory, PostVideos, PostImages
 
 
 class PostPageCategorySerializer(serializers.ModelSerializer):
