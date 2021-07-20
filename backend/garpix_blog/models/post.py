@@ -16,7 +16,7 @@ def get_display(key, _list):
     return None
 
 
-class PostPage(PostMixin):
+class PostPage(PostMixin, models.Model):
     class TYPE:
         NEW = 1
         PROMOTION = 2
