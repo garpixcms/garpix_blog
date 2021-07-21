@@ -2,9 +2,9 @@
 
 {% block content %}
 <h1>{{object.title}}</h1>
-{% for category in categories %}
+{% for post in posts %}
     <div>
-        <h3><a href="{{category.get_absolute_url}}">{{category.title}}</a></h3>
+        <h3><a href="{{post.get_absolute_url}}">{{post.title}}</a></h3>
     </div>
 {% endfor %}
 
