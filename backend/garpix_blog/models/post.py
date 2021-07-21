@@ -12,7 +12,7 @@ PostMixin = import_string(settings.GARPIX_BLOG_POST_MIXIN)
 
 class PostPage(BasePage, PostMixin, PolymorphicActiveMixin):
     short_description = models.TextField(default='', verbose_name='Краткое описание', blank=True)
-    content = RichTextUploadingField(blank=True, default='', verbose_name='Контент новости')
+    content = RichTextUploadingField(blank=True, default='', verbose_name='Контент поста')
     image_preview = models.ImageField(verbose_name="Изображение превью", blank=True, null=True, upload_to=get_file_path)
 
     def __str__(self):

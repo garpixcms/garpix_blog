@@ -12,7 +12,7 @@ PostVideosMixin = import_string(settings.GARPIX_BLOG_POST_VIDEO_MIXIN)
 
 class PostVideo(BasePage, PostVideosMixin, PolymorphicActiveMixin):
     video = models.FileField(verbose_name="Видео", upload_to=get_file_path)
-    post = models.ForeignKey(PostPage, on_delete=models.CASCADE, related_name='videos', verbose_name='Новость/Акция')
+    post = models.ForeignKey(PostPage, on_delete=models.CASCADE, related_name='videos', verbose_name='Пост')
 
     def __str__(self):
         return self.title

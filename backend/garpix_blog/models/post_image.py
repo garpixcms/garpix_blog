@@ -12,7 +12,7 @@ PostImageMixin = import_string(settings.GARPIX_BLOG_POST_IMAGE_MIXIN)
 
 class PostImages(BasePage, PostImageMixin, PolymorphicActiveMixin):
     image = models.ImageField(upload_to=get_file_path, verbose_name="Изображение", )
-    post = models.ForeignKey(PostPage, on_delete=models.CASCADE, related_name='images', verbose_name='Новость/Акция')
+    post = models.ForeignKey(PostPage, on_delete=models.CASCADE, related_name='images', verbose_name='Пост')
 
     def __str__(self):
         return self.title
