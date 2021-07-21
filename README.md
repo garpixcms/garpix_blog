@@ -18,6 +18,10 @@ INSTALLED_APPS = [
     # ...
     'garpix_blog',
 ]
+
+MIGRATION_MODULES.update(
+    {'garpix_blog': 'app.migrations.garpix_blog'}
+)
 ```
 
 
