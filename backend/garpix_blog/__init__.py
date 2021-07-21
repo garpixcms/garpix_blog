@@ -1,1 +1,1 @@
-default_app_config = 'garpix_blog1.apps.GarpixBlogConfig'
+default_app_config = 'garpix_blog.apps.GarpixBlogConfig'
