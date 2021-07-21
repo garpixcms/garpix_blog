@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from garpix_blog.models import PostPage, PostVideo, PostImages
+from garpix_blog.models import PostPage, PostVideo, PostImage
 
 
 class PostPageVideoSerializer(serializers.ModelSerializer):
@@ -11,7 +11,7 @@ class PostPageVideoSerializer(serializers.ModelSerializer):
 
 class PostPageImagesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PostImages
+        model = PostImage
         fields = ['id', 'title', 'image', 'created_at', 'updated_at']
 
 

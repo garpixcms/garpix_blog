@@ -1,9 +1,9 @@
 from django.contrib import admin
-from garpix_blog.models import PostImages
+from garpix_blog.models import PostImage
 
 
-@admin.register(PostImages)
-class PostImagesAdmin(admin.ModelAdmin):
+@admin.register(PostImage)
+class PostImageAdmin(admin.ModelAdmin):
     list_display = ('title', 'post')
     fieldsets = [
         [
@@ -19,8 +19,8 @@ class PostImagesAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at',)
 
 
-class PostImagesItemInline(admin.TabularInline):
-    model = PostImages
+class PostImageItemInline(admin.TabularInline):
+    model = PostImage
     fk_name = 'post'
     extra = 1
     show_change_link = True

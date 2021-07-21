@@ -11,11 +11,13 @@ class BlogPage(BasePage, BlogMixin, PolymorphicActiveMixin):
     template = 'pages/blog.html'
 
     def get_context(self, request=None, *args, **kwargs):
-        from garpix_blog.models import CategoryPage
+        from garpix_blog.models import CategoryPage, PostPage
         context = super().get_context(request, *args, **kwargs)
-        categories = CategoryPage.on_site.filter(is_active=True, parent=kwargs['object'])
+        categories = CategoryPage.on_site.filter(is_active=True, parent=kwargs['object'])[:10]
+        posts = PostPage.on_site.filter(is_active=True, parent=kwargs['object'])[:10]
         context.update({
-            'categories': categories
+            'categories': categories,
+            'posts': posts
         })
         return context
 

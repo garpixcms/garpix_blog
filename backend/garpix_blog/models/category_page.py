@@ -13,7 +13,7 @@ class CategoryPage(BasePage, PostCategoryMixin, PolymorphicActiveMixin):
     def get_context(self, request=None, *args, **kwargs):
         from garpix_blog.models import PostPage
         context = super().get_context(request, *args, **kwargs)
-        posts = PostPage.on_site.filter(is_active=True, parent=kwargs['object'])
+        posts = PostPage.on_site.filter(is_active=True, parent=kwargs['object'])[:10]
         context.update({
             'posts': posts
         })
