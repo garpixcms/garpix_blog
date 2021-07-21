@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
 
-class BlogConfig(AppConfig):
-    name = 'blog'
+class GarpixBlogConfig(AppConfig):
+    name = 'garpix_blog'
+    verbose_name = 'GarpixBlog'
