@@ -7,10 +7,10 @@ from app.mixins import PolymorphicActiveMixin
 from garpix_blog.models import PostPage
 from garpix_utils.file import get_file_path
 
-PostImagesMixin = import_string(settings.GARPIX_BLOG_POST_IMAGE_MIXIN)
+PostImageMixin = import_string(settings.GARPIX_BLOG_POST_IMAGE_MIXIN)
 
 
-class PostImages(BasePage, PostImagesMixin, PolymorphicActiveMixin):
+class PostImages(BasePage, PostImageMixin, PolymorphicActiveMixin):
     image = models.ImageField(upload_to=get_file_path, verbose_name="Изображение", )
     post = models.ForeignKey(PostPage, on_delete=models.CASCADE, related_name='images', verbose_name='Новость/Акция')
 

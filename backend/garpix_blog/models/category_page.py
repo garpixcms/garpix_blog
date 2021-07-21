@@ -10,7 +10,7 @@ PostCategoryMixin = import_string(settings.GARPIX_BLOG_POST_CATEGORY_MIXIN)
 
 
 class CategoryPage(BasePage, PostCategoryMixin, PolymorphicActiveMixin):
-    blog = models.ForeignKey(BlogPage, on_delete=models.CASCADE, verbose_name='Список Новостей/Акций',
+    blog = models.ForeignKey(BlogPage, on_delete=models.CASCADE, verbose_name='Блог',
                              related_name='categories', null=True, blank=True)
 
     def __str__(self):

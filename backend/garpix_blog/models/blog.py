@@ -10,6 +10,6 @@ BlogMixin = import_string(settings.GARPIX_BLOG_MIXIN)
 class BlogPage(BasePage, BlogMixin, PolymorphicActiveMixin):
 
     class Meta:
-        verbose_name = "Список Новостей/Акций"
-        verbose_name_plural = "Списки Новостей/Акций"
+        verbose_name = "Блог"
+        verbose_name_plural = "Блоги"
         ordering = ('-created_at',)
