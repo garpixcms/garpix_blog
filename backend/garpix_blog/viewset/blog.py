@@ -17,9 +17,7 @@ class BlogPagePagination(PageNumberPagination):
 
 class BlogPageFilter(django_filters.FilterSet):
     title = django_filters.CharFilter(field_name='title', lookup_expr='icontains')
-    is_active = django_filters.BooleanFilter(field_name='is_active', )
-    created_at = django_filters.DateTimeFilter(field_name="created_at",
-                                               lookup_expr='gte')
+    created_at = django_filters.DateTimeFilter(field_name="created_at", lookup_expr='gte')
 
     class Meta:
         model = BlogPage
@@ -27,7 +25,7 @@ class BlogPageFilter(django_filters.FilterSet):
 
 
 class BlogPageViewSet(ModelViewSet):
-    queryset = BlogPage.objects.all()
+    queryset = BlogPage.active_objects.all()
     permission_classes = [BasePermission, ]
     pagination_class = BlogPagePagination
     filter_backends = (DjangoFilterBackend, OrderingFilter)

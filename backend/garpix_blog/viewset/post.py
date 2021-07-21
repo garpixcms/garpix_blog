@@ -17,17 +17,15 @@ class PostPagePagination(PageNumberPagination):
 
 class PostPageFilter(django_filters.FilterSet):
     title = django_filters.CharFilter(field_name='title', lookup_expr='icontains')
-    is_active = django_filters.BooleanFilter(field_name='is_active', )
-    created_at = django_filters.DateTimeFilter(field_name="created_at",
-                                               lookup_expr='gte')
+    created_at = django_filters.DateTimeFilter(field_name="created_at", lookup_expr='gte')
 
     class Meta:
         model = PostPage
-        fields = ['created_at', 'type', 'category']
+        fields = ['created_at', 'type']
 
 
 class PostPageViewSet(ModelViewSet):
-    queryset = PostPage.objects.all()
+    queryset = PostPage.active_objects.all()
     permission_classes = [BasePermission, ]
     pagination_class = PostPagePagination
     filter_backends = (DjangoFilterBackend, OrderingFilter)

@@ -1,14 +1,16 @@
 from django.conf import settings
 from django.db import models
 from django.utils.module_loading import import_string
+from garpix_page.models import BasePage
 
-from garpix_blog.models import PostPage
+from app.mixins import PolymorphicActiveMixin
+from garpix_blog.models import BlogPage
 
 PostCategoryMixin = import_string(settings.GARPIX_BLOG_POST_CATEGORY_MIXIN)
 
 
-class PostCategory(PostCategoryMixin, models.Model):
-    post = models.ForeignKey(PostPage, on_delete=models.CASCADE, verbose_name='Новость',
+class CategoryPage(BasePage, PostCategoryMixin, PolymorphicActiveMixin):
+    blog = models.ForeignKey(BlogPage, on_delete=models.CASCADE, verbose_name='Список Новостей/Акций',
                              related_name='categories', null=True, blank=True)
 
     def __str__(self):

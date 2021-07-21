@@ -1,6 +1,5 @@
-from .post_category import PostCategoryItemInline
 from .post_image import PostImagesItemInline
-from .post_video import PostVideosItemInline
+from .post_video import PostVideoItemInline
 from garpix_blog.models import PostPage
 from django.contrib import admin
 from garpix_page.admin import BasePageAdmin
@@ -9,8 +8,7 @@ from garpix_page.admin import BasePageAdmin
 @admin.register(PostPage)
 class PostPageAdmin(BasePageAdmin):
     inlines = [
-        PostCategoryItemInline,
         PostImagesItemInline,
-        PostVideosItemInline
+        PostVideoItemInline
     ]
     readonly_fields = ('created_at', 'updated_at',)

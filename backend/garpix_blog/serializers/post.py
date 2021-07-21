@@ -1,17 +1,11 @@
 from rest_framework import serializers
 
-from garpix_blog.models import PostPage, PostCategory, PostVideos, PostImages
+from garpix_blog.models import PostPage, PostVideo, PostImages
 
 
-class PostPageCategorySerializer(serializers.ModelSerializer):
+class PostPageVideoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PostCategory
-        fields = ['id', 'title']
-
-
-class PostPageVideosSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PostVideos
+        model = PostVideo
         fields = ['id', 'title', 'video', 'created_at', 'updated_at']
 
 
@@ -22,8 +16,7 @@ class PostPageImagesSerializer(serializers.ModelSerializer):
 
 
 class PostPageSerializer(serializers.ModelSerializer):
-    category = PostPageCategorySerializer(read_only=True, many=True)
-    videos = PostPageVideosSerializer(read_only=True, many=True)
+    videos = PostPageVideoSerializer(read_only=True, many=True)
     images = PostPageImagesSerializer(read_only=True, many=True)
 
     class Meta:
@@ -31,12 +24,11 @@ class PostPageSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'blog', 'short_description',
             'news_content', 'image_preview',
-            'type', 'category', 'images', 'videos',
+            'type', 'images', 'videos',
         ]
 
 
 class PostPageListSerializer(serializers.ModelSerializer):
-    category = PostPageCategorySerializer(read_only=True, many=True)
     url = serializers.SerializerMethodField(read_only=True)
 
     @staticmethod
@@ -48,5 +40,5 @@ class PostPageListSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'blog', 'short_description',
             'news_content', 'image_preview',
-            'type', 'category', 'url',
+            'type', 'url',
         ]

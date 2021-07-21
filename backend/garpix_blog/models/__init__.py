@@ -1,5 +1,5 @@
 from .blog import BlogPage
 from .post import PostPage
-from .post_category import PostCategory
+from .category_page import CategoryPage
 from .post_image import PostImages
-from .post_video import PostVideos
+from .post_video import PostVideo

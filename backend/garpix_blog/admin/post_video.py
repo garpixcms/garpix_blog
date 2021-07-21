@@ -1,9 +1,9 @@
 from django.contrib import admin
-from garpix_blog.models import PostVideos
+from garpix_blog.models import PostVideo
 
 
-@admin.register(PostVideos)
-class PostVideosAdmin(admin.ModelAdmin):
+@admin.register(PostVideo)
+class PostVideoAdmin(admin.ModelAdmin):
     list_display = ('title', 'post')
     fieldsets = [
         [
@@ -19,8 +19,8 @@ class PostVideosAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at',)
 
 
-class PostVideosItemInline(admin.TabularInline):
-    model = PostVideos
+class PostVideoItemInline(admin.TabularInline):
+    model = PostVideo
     fk_name = 'post'
     extra = 1
     show_change_link = True
