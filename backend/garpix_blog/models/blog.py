@@ -8,6 +8,16 @@ BlogMixin = import_string(settings.GARPIX_BLOG_MIXIN)
 
 
 class BlogPage(BasePage, BlogMixin, PolymorphicActiveMixin):
+    template = 'pages/blog.html'
+
+    def get_context(self, request=None, *args, **kwargs):
+        from garpix_blog.models import CategoryPage
+        context = super().get_context(request, *args, **kwargs)
+        categories = CategoryPage.on_site.filter(is_active=True, parent=kwargs['object'])
+        context.update({
+            'categories': categories
+        })
+        return context
 
     class Meta:
         verbose_name = "Блог"
