@@ -1,6 +1,6 @@
 from polymorphic_tree.models import PolymorphicMPTTModel
 
-from ..managers.polymorphic_active_manager import PolymorphicActiveManager
+from garpix_blog.managers import PolymorphicActiveManager
 
 
 class PolymorphicActiveMixin(PolymorphicMPTTModel):

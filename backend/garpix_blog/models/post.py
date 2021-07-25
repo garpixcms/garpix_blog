@@ -4,7 +4,7 @@ from django.db import models
 from django.utils.module_loading import import_string
 from garpix_page.models import BasePage
 
-from app.mixins import PolymorphicActiveMixin
+from garpix_blog.mixins import PolymorphicActiveMixin
 from garpix_utils.file import get_file_path
 
 PostMixin = import_string(settings.GARPIX_BLOG_POST_MIXIN)
