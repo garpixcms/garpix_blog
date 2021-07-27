@@ -19,11 +19,10 @@ class BlogPage(BasePage, BlogMixin, PolymorphicActiveMixin):
         posts = PostPage.on_site.filter(is_active=True, parent=kwargs['object'])
 
         page_posts = paginator.paginate_queryset(posts, request)
-        page_categories = paginator.paginate_queryset(categories, request)
 
         context.update({
+            'categories': categories,
             'posts': paginator.get_paginated_response(page_posts),
-            'categories': paginator.get_paginated_response(page_categories),
         })
         return context
 
