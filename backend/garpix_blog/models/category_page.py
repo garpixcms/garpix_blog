@@ -3,7 +3,7 @@ from django.utils.module_loading import import_string
 from garpix_page.models import BasePage
 
 from garpix_blog.mixins import PolymorphicActiveMixin
-
+from rest_framework.pagination import PageNumberPagination
 PostCategoryMixin = import_string(settings.GARPIX_BLOG_POST_CATEGORY_MIXIN)
 
 
@@ -12,9 +12,14 @@ class CategoryPage(BasePage, PostCategoryMixin, PolymorphicActiveMixin):
     def get_context(self, request=None, *args, **kwargs):
         from garpix_blog.models import PostPage
         context = super().get_context(request, *args, **kwargs)
-        posts = PostPage.on_site.filter(is_active=True, parent=kwargs['object'])[:10]
+        paginator = PageNumberPagination()
+
+        posts = PostPage.on_site.filter(is_active=True, parent=kwargs['object'])
+
+        page_posts = paginator.paginate_queryset(posts, request)
+
         context.update({
-            'posts': posts
+            'posts': paginator.get_paginated_response(page_posts)
         })
         return context
 
