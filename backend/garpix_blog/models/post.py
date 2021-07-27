@@ -3,16 +3,16 @@ from django.conf import settings
 from django.db import models
 from django.utils.module_loading import import_string
 from garpix_page.models import BasePage
-
-from garpix_blog.mixins import PolymorphicActiveMixin
 from garpix_utils.file import get_file_path
+
+from garpix_utils.models import PolymorphicActiveMixin
 
 PostMixin = import_string(settings.GARPIX_BLOG_POST_MIXIN)
 
 
 class PostPage(BasePage, PostMixin, PolymorphicActiveMixin):
     short_content = models.TextField(default='', verbose_name='Краткое описание', blank=True)
-    content = RichTextUploadingField(blank=True, default='', verbose_name='Контент поста')
+    content = RichTextUploadingField(default='', verbose_name='Контент поста')
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to=get_file_path)
 
     def __str__(self):

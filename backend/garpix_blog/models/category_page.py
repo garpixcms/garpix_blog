@@ -1,8 +1,8 @@
 from django.conf import settings
 from django.utils.module_loading import import_string
 from garpix_page.models import BasePage
+from garpix_utils.models import PolymorphicActiveMixin
 
-from garpix_blog.mixins import PolymorphicActiveMixin
 from rest_framework.pagination import PageNumberPagination
 PostCategoryMixin = import_string(settings.GARPIX_BLOG_POST_CATEGORY_MIXIN)
 

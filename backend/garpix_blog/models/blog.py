@@ -3,8 +3,7 @@ from django.utils.module_loading import import_string
 from garpix_page.models import BasePage
 from rest_framework.pagination import PageNumberPagination
 
-from garpix_blog.mixins import PolymorphicActiveMixin
-
+from garpix_utils.models import PolymorphicActiveMixin
 BlogMixin = import_string(settings.GARPIX_BLOG_MIXIN)
 
 
