@@ -2,7 +2,7 @@ from django.conf import settings
 from django.utils.module_loading import import_string
 from garpix_page.models import BasePage
 
-from garpix_blog.mixins import PolymorphicActiveMixin
+from garpix_utils.models import PolymorphicActiveMixin
 from garpix_blog.paginators import BlogPagination
 
 BlogMixin = import_string(settings.GARPIX_BLOG_MIXIN)
@@ -15,8 +15,8 @@ class BlogPage(BasePage, BlogMixin, PolymorphicActiveMixin):
         context = super().get_context(request, *args, **kwargs)
         paginator = BlogPagination()
 
-        categories = CategoryPage.on_site.filter(is_active=True, parent=kwargs['object'])[:10]
-        posts = PostPage.on_site.filter(is_active=True, parent=kwargs['object'])[:10]
+        categories = CategoryPage.on_site.filter(is_active=True, parent=kwargs['object'])
+        posts = PostPage.on_site.filter(is_active=True, parent=kwargs['object'])
 
         page_posts = paginator.paginate_queryset(posts, request)
         context.update({

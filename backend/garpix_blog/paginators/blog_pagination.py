@@ -3,7 +3,7 @@ from collections import OrderedDict
 
 
 class BlogPagination(PageNumberPagination):
-    page_size = 2
+    page_size = 10
     page_size_query_param = 'page_size'
     max_page_size = 100
 
@@ -12,7 +12,9 @@ class BlogPagination(PageNumberPagination):
             ('count', self.page.paginator.count),
             ('next', self.get_next_link()),
             ('previous', self.get_previous_link()),
-            ('results', data)
+            ('results', data),
+            ('num_pages', self.page.paginator.num_pages),
+            ('num_current', self.page.number)
         ])
 
     def get_page_number(self, request, paginator):

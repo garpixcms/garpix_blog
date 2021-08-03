@@ -14,6 +14,8 @@ class PostPage(BasePage, PostMixin, PolymorphicActiveMixin):
     short_content = models.TextField(default='', verbose_name='Краткое описание', blank=True)
     content = RichTextUploadingField(default='', verbose_name='Контент поста')
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to=get_file_path)
+    category = models.ForeignKey('CategoryPage', null=True, on_delete=models.CASCADE, verbose_name='Категория',
+                                 related_name='category_posts')
 
     def __str__(self):
         return f'{self.title}'
